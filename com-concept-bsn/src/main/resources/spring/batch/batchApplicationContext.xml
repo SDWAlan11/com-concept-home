@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:batch="http://www.springframework.org/schema/batch"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd">
+
+	<!-- stored job-meta in memory -->
+	<bean id="jobRepository"
+		class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean">
+		<property name="transactionManager" ref="transactionManager" />
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.batch.support.transaction.ResourcelessTransactionManager" />
+
+	<bean id="jobLauncher"
+		class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+		<property name="jobRepository" ref="jobRepository" />
+	</bean>
+
+
+
+	<batch:job id="jobProcessEmpleados">
+		<batch:step id="step1">
+			<batch:tasklet>
+				<batch:chunk reader="csvEmpleadoReader" writer="jpaEmpleadoWriter" commit-interval="500" />
+			</batch:tasklet>
+		</batch:step>
+	</batch:job>
+	
+	<bean id="empleado" class="com.pruebas.spring.entity.Empleado" scope="prototype" />
+	
+	<bean id="csvEmpleadoReader" class="org.springframework.batch.item.file.FlatFileItemReader">
+		<property name="resource" value="classpath:csv/archivoEmpleados.csv" />
+		<property name="lineMapper">
+
+			<bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+				<!-- split it -->
+				<property name="lineTokenizer">
+					<bean
+						class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
+						<property name="names" value="id,firstName,lastName,rol.cveRol,birthDay" />
+					</bean>
+				</property>
+				<property name="fieldSetMapper">
+					<bean
+						class="org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper">
+						<property name="prototypeBeanName" value="empleado" />
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="queueEmpleadoWriter" class="org.springframework.batch.item.jms.JmsItemWriter">
+		<property name="jmsTemplate" ref="jmsTemplate" />
+	</bean>
+
+	<bean id="jpaEmpleadoWriter" class="org.springframework.batch.item.database.JpaItemWriter">
+    	<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	
+</beans>

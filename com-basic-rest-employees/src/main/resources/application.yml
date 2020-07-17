@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: com-basic-rest-employees
+
+  cloud:
+    config:      uri:  http://localhost:8888      
