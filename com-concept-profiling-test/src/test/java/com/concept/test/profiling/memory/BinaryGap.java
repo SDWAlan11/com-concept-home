@@ -26,7 +26,9 @@ public class BinaryGap {
 		System.out.println(binaryGap.solution(Integer.MAX_VALUE - 1));
 		System.out.println(binaryGap.solution(Integer.MAX_VALUE - 3));
 		System.out.println(binaryGap.solution(Integer.MAX_VALUE - 4));
+		System.out.println(binaryGap.solution(Integer.MAX_VALUE - 5));
 		System.out.println(binaryGap.solution(Integer.MAX_VALUE - 6));
+		
 	}
 
 }
