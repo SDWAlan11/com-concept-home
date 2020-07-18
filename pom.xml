@@ -12,6 +12,7 @@
 		<module>com-concept-dto</module>
 		<module>com-basic-rest-employees</module>
 		<module>com-concept-web-client</module>
+		<module>com-concept-server-eureka</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
