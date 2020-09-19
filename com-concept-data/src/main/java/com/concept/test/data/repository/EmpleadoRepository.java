@@ -8,7 +8,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import com.concept.test.data.entity.Employee;
 
-@RepositoryRestResource
+@RepositoryRestResource(collectionResourceRel = "employees", path = "employees")
 public interface EmpleadoRepository extends CrudRepository<Employee, String>, JpaSpecificationExecutor<Employee>
 {
 	List<Employee> findByLastName(String lastName);
