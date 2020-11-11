@@ -16,7 +16,7 @@ import org.springframework.integration.annotation.ServiceActivator;
 import com.concept.test.data.entity.Employee;
 import com.concept.test.data.repository.EmpleadoRepository;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.basic.rest.employees"})
 @EnableDiscoveryClient
 @RefreshScope
 @IntegrationComponentScan

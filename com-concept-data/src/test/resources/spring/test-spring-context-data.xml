@@ -29,6 +29,12 @@
 	<!-- <property name="username" value="${db.username}" /> -->
 	<!-- <property name="password" value="${db.password}" /> -->
 	<!-- </bean> -->
+	
+	<jdbc:initialize-database>
+		<jdbc:script location="classpath:data/mysqlsampledatabase.sql" />
+		<jdbc:script location="classpath:data/audit-update.sql" />
+		<jdbc:script location="classpath:data/updateVersionH2.sql" />	
+	</jdbc:initialize-database>
 
 	<!-- Create default configuration for Hibernate -->
 	<bean id="hibernateJpaVendorAdapter"
@@ -75,8 +81,5 @@
 	<jpa:repositories
 		base-package="com.concept.test.data.repository" />
 
-	<jdbc:initialize-database>
-		<jdbc:script location="classpath:data/insert_usuario.sql" />
-	</jdbc:initialize-database>
 		
 </beans>

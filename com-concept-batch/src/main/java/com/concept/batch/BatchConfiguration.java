@@ -69,7 +69,7 @@ public class BatchConfiguration {
 		  ValidatingItemProcessor<Employee> validatingItemProcessor = new ValidatingItemProcessor<>();
 		  validatingItemProcessor.setFilter(false);
 		  validatingItemProcessor.setValidator( employee -> {
-			  if ("AOCD1210".equals(employee.getId())) throw new ValidationException("Alway brokes");
+			  if ("AOCD1210".equals(employee.getEmployeeNumber())) throw new ValidationException("Alway brokes");
 		  });
 		  return validatingItemProcessor;
 	  }

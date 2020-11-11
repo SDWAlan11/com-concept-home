@@ -8,7 +8,7 @@ import javax.persistence.Id;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-@Entity(name="ROLE")
+//@Entity(name="ROLE")
 public class Role implements Serializable 
 {
 	private static final long serialVersionUID = 1L;

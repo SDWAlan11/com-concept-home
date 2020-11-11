@@ -8,7 +8,7 @@
         <class-b>com.concept.test.data.entity.Employee</class-b>
         <field>
             <a>id</a>
-            <b>id</b>
+            <b>employeeNumber</b>
         </field>
         <field>
         	<a>firstName</a>

@@ -1,13 +1,21 @@
 package com.concept.test.data.entity;
 
-import org.hibernate.annotations.Fetch;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+
+import lombok.Data;
+import lombok.ToString;
 
 @MappedSuperclass
+@Data
+@ToString
 public abstract class Audit implements Serializable {
 
 	/**
@@ -16,14 +24,14 @@ public abstract class Audit implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 
-	@Column(name="CREATED_DATETIME",nullable = false)
+	@Column(name="CREATED_DATETIME",nullable = false, updatable = false)
 	@Basic(fetch = FetchType.LAZY)
 	protected LocalDateTime createdDatetime;
 	
 	@Column(name="UPDATED_DATETIME")
 	protected LocalDateTime updatedDatetime;
 	
-	@Column(name="CREATED_BY", nullable = false)
+	@Column(name="CREATED_BY", nullable = false, updatable = false)
 	protected String createdBy;
 	
 	@Column(name="UPDATED_BY")
@@ -31,48 +39,13 @@ public abstract class Audit implements Serializable {
 
 	@PrePersist
     public void prePersist() {
-        setCreatedDatetime(LocalDateTime.now());
-        setCreatedBy("SYSTEM");
+		this.createdBy = "SYSTEM";
+        this.createdDatetime = LocalDateTime.now();
     }
  
     @PreUpdate
     public void preUpdate() {
-        setUpdatedDatetime(LocalDateTime.now());
-        setUpdatedBy("SYSTEM");
-    }
-
-	public LocalDateTime getCreatedDatetime() {
-		return createdDatetime;
-	}
-
-	public void setCreatedDatetime(LocalDateTime createdDatetime) {
-		this.createdDatetime = createdDatetime;
-	}
-
-	public LocalDateTime getUpdatedDatetime() {
-		return updatedDatetime;
-	}
-
-	public void setUpdatedDatetime(LocalDateTime updatedDatetime) {
-		this.updatedDatetime = updatedDatetime;
-	}
-
-	public String getCreatedBy() {
-		return createdBy;
-	}
-
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public String getUpdatedBy() {
-		return updatedBy;
-	}
-
-	public void setUpdatedBy(String updatedBy) {
-		this.updatedBy = updatedBy;
-	}
-    
-    
-	
+        this.updatedBy = "SYSTEM";
+        this.updatedDatetime = LocalDateTime.now();
+    }	
 }
