@@ -12,10 +12,11 @@ import java.io.File;
 
 public class AWSSDKExample {
 
-    private static final String access_key_id = "AKIATNFGI7P2DHIHG6TN";
-    private static final String secret_access_key = "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";
+    //Fill these
+    private static final String access_key_id = "";
+    private static final String secret_access_key = "";
 
-    private static File file = new File("C:\\Users\\alanh\\IdeaProjects\\com-concept-home\\com-concept-awshelloworld\\src\\main\\resources\\sometext.txt");
+    private static File file = new File("");
 
         public static void main(String[] args)throws Exception {
 
