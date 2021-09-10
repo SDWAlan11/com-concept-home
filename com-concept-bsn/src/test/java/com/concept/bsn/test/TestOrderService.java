@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -24,7 +25,7 @@ import com.concept.test.data.entity.Product;
 import com.concept.test.data.repository.OrderRepository;
 import com.concept.test.data.repository.ProductRepository;
 
-@ExtendWith(SpringExtension.class)
+@SpringBootTest
 @ContextConfiguration(locations= {"classpath:spring/application-context-esb.xml"})
 @DisplayName("Tests for Order Service")
 public class TestOrderService {

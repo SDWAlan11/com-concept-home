@@ -1,0 +1,14 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: com-concept-microservice
+  cloud:
+    config:
+      uri: http://localhost:8888
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO

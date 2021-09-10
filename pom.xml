@@ -15,7 +15,9 @@
 		<module>com-basic-client-employees</module>
 		<module>concept-histrix-server</module>
 		<module>com-shippment-microservice</module>
-	</modules>
+        <module>com-concept-awshelloworld</module>
+        <module>com-concept-auth-server</module>
+    </modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -32,6 +34,7 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Hoxton.SR5</spring-cloud.version>
+		<aws.java.sdk.version>2.13.7</aws.java.sdk.version>
 	</properties>
 
 	<dependencies>

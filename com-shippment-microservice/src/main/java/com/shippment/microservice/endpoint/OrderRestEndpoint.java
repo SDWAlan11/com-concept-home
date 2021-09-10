@@ -8,12 +8,7 @@ import javax.ws.rs.QueryParam;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.concept.bsn.OrderService;
 import com.concept.dto.UsageDto;
@@ -23,6 +18,7 @@ import com.concept.test.data.entity.Product;
 import com.concept.test.data.repository.OrderRepository;
 
 @RestController
+@CrossOrigin(origins = "localhost:3000")
 @RequestMapping("/v1/order")
 public class OrderRestEndpoint {
 	
@@ -44,8 +40,9 @@ public class OrderRestEndpoint {
 	public List<Order> readOrder(@PathVariable("status") String status){
 		return orderRepository.findByStatus(Order.Status.valueOf(status));
 	}
-	
+
 	@GetMapping(path = "/page/{numberPage}")
+	@CrossOrigin(methods = {RequestMethod.GET, RequestMethod.OPTIONS})
 	@Transactional
 	public List<Order> readAllOrders(@PathVariable("numberPage") int numberPage){
 		return orderRepository.findAll(PageRequest.of(numberPage, 20, Sort.by("orderNumber"))).toList();

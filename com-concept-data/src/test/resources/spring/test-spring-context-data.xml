@@ -31,7 +31,7 @@
 	<!-- </bean> -->
 	
 	<jdbc:initialize-database>
-		<jdbc:script location="classpath:data/mysqlsampledatabase.sql" />
+		<jdbc:script location="classpath:data/h2sampledatabase.sql" />
 		<jdbc:script location="classpath:data/audit-update.sql" />
 		<jdbc:script location="classpath:data/updateVersionH2.sql" />	
 	</jdbc:initialize-database>

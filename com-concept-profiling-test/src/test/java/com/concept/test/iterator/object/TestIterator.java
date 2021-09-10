@@ -16,6 +16,5 @@ public class TestIterator {
         for(Iterator i = customIterable.iterator(); i.hasNext();){
             System.out.println(i.next());
         }
-
     }
 }
